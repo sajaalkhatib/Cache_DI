@@ -15,7 +15,6 @@ The project includes tools to monitor cache and track hits and misses.
 
 Cache can be cleared, and data will be restored from the file on the next request.
 
-Project Structure
 CacheDemo/
 │
 ├── Controllers/
@@ -28,3 +27,4 @@ CacheDemo/
 │       └── Index.cshtml
 ├── Program.cs
 └── usersCache.json  (created automatically)
+
