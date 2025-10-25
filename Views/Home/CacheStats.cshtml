@@ -1,0 +1,61 @@
+﻿@model (int hits, int misses)
+
+@{
+    ViewData["Title"] = "Cache Statistics";
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary">📈 إحصائيات الكاش</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">✅ Cache Hits</h5>
+                    <h2 class="card-text">@Model.hits</h2>
+                    <p class="card-text">عدد مرات جلب البيانات من الكاش</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">🔄 Cache Misses</h5>
+                    <h2 class="card-text">@Model.misses</h2>
+                    <p class="card-text">عدد مرات تخزين البيانات في الكاش</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        double totalRequests = Model.hits + Model.misses;
+        double hitPercentage = totalRequests > 0 ? (Model.hits / totalRequests) * 100 : 0;
+        double missPercentage = totalRequests > 0 ? (Model.misses / totalRequests) * 100 : 0;
+    }
+
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">📊 النسب المئوية</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label>✅ نجاح الكاش: @hitPercentage.ToString("0.00")%</label>
+                <div class="progress">
+                    <div class="progress-bar bg-success" style="width: @hitPercentage%"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label>🔄 فشل الكاش: @missPercentage.ToString("0.00")%</label>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" style="width: @missPercentage%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="@Url.Action("Index")" class="btn btn-primary">← العودة للقائمة</a>
+        <a href="@Url.Action("ClearCache")" class="btn btn-danger">🗑️ مسح الكاش والإحصائيات</a>
+    </div>
+</div>
