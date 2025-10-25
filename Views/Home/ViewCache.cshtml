@@ -4,28 +4,32 @@
     ViewData["Title"] = "عرض محتويات الكاش";
 }
 
-<div class="container mt-5">
-    <h2 class="text-primary">🔍 محتويات الكاش</h2>
+<div class="container mt-4">
+    <h2 class="text-primary mb-4"><i class="bi bi-search"></i> محتويات الكاش</h2>
 
-    <div class="card mt-4">
+    <div class="card">
         <div class="card-header bg-info text-white">
-            <h5 class="mb-0">📋 العناصر المخزنة في الكاش</h5>
+            <h5 class="mb-0"><i class="bi bi-list-ul"></i> العناصر المخزنة في الذاكرة (RAM)</h5>
         </div>
         <div class="card-body">
             @if (Model.Any())
             {
                 foreach (var item in Model)
                 {
-                    <div class="mb-4 p-3 border rounded">
-                        <h6 class="text-success">🔑 المفتاح: <code>@item.Key</code></h6>
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h6 class="text-success">
+                            <i class="bi bi-key"></i> المفتاح: <code>@item.Key</code>
+                        </h6>
                         <div class="mt-2">
-                            <strong>📦 القيمة:</strong>
+                            <strong><i class="bi bi-data"></i> القيمة:</strong>
                             <ul class="list-group mt-2">
                                 @if (item.Value is List<string> stringList)
                                 {
                                     @foreach (var listItem in stringList)
                                     {
-                                        <li class="list-group-item">@listItem</li>
+                                        <li class="list-group-item">
+                                            <i class="bi bi-person"></i> @listItem
+                                        </li>
                                     }
                                 }
                                 else
@@ -39,33 +43,45 @@
             }
             else
             {
-                <div class="alert alert-warning">
-                    ⚠️ لا توجد عناصر في الكاش حالياً
+                <div class="alert alert-warning text-center">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <h5>⚠️ لا توجد عناصر في الكاش حالياً</h5>
+                    <p class="mb-0">استخدم زر "تحديث الصفحة" في الصفحة الرئيسية لتخزين البيانات</p>
                 </div>
             }
         </div>
     </div>
 
-    <div class="mt-3">
-        <h6>🔑 المفاتيح الموجودة:</h6>
-        @if (ViewBag.CacheKeys != null && ViewBag.CacheKeys.Count > 0)
-        {
-            <div class="d-flex flex-wrap gap-2">
-                @foreach (var key in ViewBag.CacheKeys)
-                {
-                    <span class="badge bg-success">@key</span>
-                }
-            </div>
-        }
-        else
-        {
-            <p class="text-muted">لا توجد مفاتيح في الكاش</p>
-        }
+    <div class="card mt-3">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0"><i class="bi bi-key"></i> المفاتيح الموجودة</h5>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.CacheKeys != null && ViewBag.CacheKeys.Count > 0)
+            {
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach (var key in ViewBag.CacheKeys)
+                    {
+                        <span class="badge bg-success fs-6">@key</span>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted"><i class="bi bi-key"></i> لا توجد مفاتيح في الكاش</p>
+            }
+        </div>
     </div>
 
-    <div class="mt-4">
-        <a href="@Url.Action("Index")" class="btn btn-primary">← العودة للقائمة</a>
-        <button onclick="location.reload()" class="btn btn-secondary">🔄 تحديث الصفحة</button>
-        <a href="@Url.Action("ClearCache")" class="btn btn-warning">🗑️ مسح الكاش</a>
+    <div class="mt-4 d-flex gap-2">
+        <a href="@Url.Action("Index")" class="btn btn-primary">
+            <i class="bi bi-arrow-left"></i> العودة للرئيسية
+        </a>
+        <button onclick="location.reload()" class="btn btn-secondary">
+            <i class="bi bi-arrow-clockwise"></i> تحديث الصفحة
+        </button>
+        <a href="@Url.Action("ClearCache")" class="btn btn-danger">
+            <i class="bi bi-trash"></i> مسح الكاش
+        </a>
     </div>
 </div>

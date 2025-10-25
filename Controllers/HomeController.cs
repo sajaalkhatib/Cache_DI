@@ -38,19 +38,19 @@ namespace Cache_DI.Controllers
             return View(cacheContents);
         }
 
-        // إضافة action جديد لاختبار الكاش
-        public IActionResult TestCache()
+        public IActionResult TestConsole()
         {
-            Console.WriteLine("🧪 بدء اختبار الكاش...");
+            Console.WriteLine("🎯 ===== بدء اختبار الكونسول =====");
 
-            // جلب البيانات عدة مرات لمشاهدة الفرق
             for (int i = 1; i <= 3; i++)
             {
                 Console.WriteLine($"\n🔄 المحاولة #{i}:");
                 var users = _userService.GetAllUsers();
             }
 
-            TempData["Message"] = "🧪 تم اختبار الكاش - شاهد الـ Console";
+            Console.WriteLine("🎯 ===== انتهاء اختبار الكونسول =====");
+
+            TempData["Message"] = "🧪 تم اختبار الكونسول - شاهد الـ Output في VS";
             return RedirectToAction("Index");
         }
     }
