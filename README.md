@@ -11,7 +11,6 @@ The data is then stored in RAM and in a JSON file (usersCache.json) as a permane
 
 The system tracks the number of cache hits and misses using console logs and logging.
 
-
 CacheDemo/
 │
 ├── Controllers/
