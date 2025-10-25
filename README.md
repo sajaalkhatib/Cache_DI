@@ -11,15 +11,3 @@ The data is then stored in RAM and in a JSON file (usersCache.json) as a permane
 
 The system tracks the number of cache hits and misses using console logs and logging.
 
-CacheDemo/
-│
-├── Controllers/
-│   └── HomeController.cs        # Handles HTTP requests and responses
-├── Services/
-│   ├── IUserService.cs          # Service interface for user operations
-│   └── UserService.cs           # Implements caching and file storage logic
-├── Views/
-│   └── Home/
-│       └── Index.cshtml         # Main view displaying user data
-├── Program.cs                   # Application startup and DI configuration
-└── usersCache.json              # JSON file storing permanent cache (auto-created)
