@@ -1,30 +1,26 @@
-The ASP.NET Core MVC project demonstrates how to use Memory Cache to temporarily store data (RAM) while also keeping a permanent copy in a JSON file.
-The project utilizes Dependency Injection (DI) to manage services professionally and includes Console Logging for every CACHE HIT and CACHE MISS.
+CacheDemo is an ASP.NET Core MVC project that demonstrates how to efficiently use Memory Cache (RAM) for temporary data storage while maintaining a permanent copy in a JSON file.
+The main goal is to show how caching can improve performance, track cache hits and misses, and persist data beyond application restarts.
 
-Project Idea
+How it works:
 
-Data is retrieved from Memory Cache (RAM) if available → faster than querying a database.
+Data is first retrieved from Memory Cache (RAM) for fast access.
 
-If data is not present in the cache (CACHE MISS):
+If data is missing (CACHE MISS), default data is created: Saja, Ali, Saleh, Lina, Omar.
 
-Default data is created: Saja, Ali, Saleh, Lina, Omar.
+The data is then stored in RAM and in a JSON file (usersCache.json) as a permanent backup.
 
-The data is stored in both cache and a JSON file (usersCache.json) for a permanent copy.
+The system tracks the number of cache hits and misses using console logs and logging.
 
-The project includes tools to monitor cache and track hits and misses.
-
-Cache can be cleared, and data will be restored from the file on the next request.
 
 CacheDemo/
 │
 ├── Controllers/
-│   └── HomeController.cs
+│   └── HomeController.cs        # Handles HTTP requests and responses
 ├── Services/
-│   ├── IUserService.cs
-│   └── UserService.cs
+│   ├── IUserService.cs          # Service interface for user operations
+│   └── UserService.cs           # Implements caching and file storage logic
 ├── Views/
 │   └── Home/
-│       └── Index.cshtml
-├── Program.cs
-└── usersCache.json  (created automatically)
-
+│       └── Index.cshtml         # Main view displaying user data
+├── Program.cs                   # Application startup and DI configuration
+└── usersCache.json              # JSON file storing permanent cache (auto-created)
